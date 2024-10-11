@@ -1,3 +1,7 @@
+require './lib/card'
+require './lib/deck'
+require './lib/player'
+
 class Deck
     attr_reader :cards
 
@@ -16,7 +20,7 @@ class Deck
     end
 
     def percent_high_ranking
-        high_cards = @high_ranked_cards.count.to_f
+        high_cards = high_ranking_cards.count.to_f
         card_count = @cards.count.to_f
         high_rank_percent = high_cards / card_count * 100
         p high_rank_percent.round(2)
