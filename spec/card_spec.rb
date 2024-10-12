@@ -9,18 +9,10 @@ describe Card do
       expect(card).to be_an_instance_of(Card)
     end
 
-    it "card should have the suit of a heart" do
+    it "has a suit, value, rank" do
       card = Card.new(:heart, 'Jack', 11)
       expect(card.suit).to eq(:heart)
-    end
-
-    it "card should have a value of jack" do
-      card = Card.new(:heart, 'Jack', 11)
       expect(card.value).to eq('Jack')
-    end
-
-    it "card should have a rank of 11" do
-      card = Card.new(:heart, 'Jack', 11)
       expect(card.rank).to eq(11)
     end
   end

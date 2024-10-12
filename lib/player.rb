@@ -1,6 +1,7 @@
 require './lib/card'
 require './lib/deck'
-require './lib/player'
+
+# Defining Player class to hold all player details
 
 class Player
     attr_reader :name,
@@ -12,6 +13,7 @@ class Player
         @has_lost = false
     end
 
+    # Returns of player has lost by checking if they have ran out of cards in their deck
     def has_lost?
         if deck.cards.count > 0
             @hast_lost = false
