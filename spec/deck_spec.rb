@@ -45,9 +45,6 @@ describe Deck do
             card3 = Card.new(:heart, 'Ace', 14)
             cards = [card1, card2, card3]
             deck = Deck.new(cards)
-            deck.rank_of_card_at(0)
-            deck.rank_of_card_at(2)
-            deck.cards
             expect(deck.high_ranking_cards).to eq([card1, card3])
         end
 
@@ -57,13 +54,8 @@ describe Deck do
             card3 = Card.new(:heart, 'Ace', 14)
             cards = [card1, card2, card3]
             deck = Deck.new(cards)
-            deck.rank_of_card_at(0)
-            deck.rank_of_card_at(2)
             deck.cards
-            deck.high_ranking_cards
-            deck.percent_high_ranking
             deck.remove_card
-            deck.cards
             expect(deck.high_ranking_cards).to eq([card3])
         end
 
@@ -76,9 +68,6 @@ describe Deck do
             card3 = Card.new(:heart, 'Ace', 14)
             cards = [card1, card2, card3]
             deck = Deck.new(cards)
-            deck.rank_of_card_at(0)
-            deck.rank_of_card_at(2)
-            deck.cards
             expect(deck.percent_high_ranking).to eq(66.67)
         end
 
@@ -88,14 +77,7 @@ describe Deck do
             card3 = Card.new(:heart, 'Ace', 14)
             cards = [card1, card2, card3]
             deck = Deck.new(cards)
-            deck.rank_of_card_at(0)
-            deck.rank_of_card_at(2)
-            deck.cards
-            deck.high_ranking_cards
-            deck.percent_high_ranking
             deck.remove_card
-            deck.cards
-            deck.high_ranking_cards
             expect(deck.percent_high_ranking).to eq(50.0)
         end
 
@@ -108,11 +90,6 @@ describe Deck do
             card3 = Card.new(:heart, 'Ace', 14)
             cards = [card1, card2, card3]
             deck = Deck.new(cards)
-            deck.rank_of_card_at(0)
-            deck.rank_of_card_at(2)
-            deck.cards
-            deck.high_ranking_cards
-            deck.percent_high_ranking
             deck.remove_card
         expect(deck.cards).to eq([card2, card3])
         end
@@ -125,15 +102,7 @@ describe Deck do
             card3 = Card.new(:heart, 'Ace', 14)
             cards = [card1, card2, card3]
             deck = Deck.new(cards)
-            deck.rank_of_card_at(0)
-            deck.rank_of_card_at(2)
-            deck.cards
-            deck.high_ranking_cards
-            deck.percent_high_ranking
             deck.remove_card
-            deck.cards
-            deck.high_ranking_cards
-            deck.percent_high_ranking
             card4 = Card.new(:club, '5', 5)
             deck.add_card(card4)
             expect(deck.cards).to eq([card2, card3, card4])

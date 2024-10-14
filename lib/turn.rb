@@ -8,6 +8,7 @@ class Turn
     attr_reader :player1,
                 :player2,
                 :spoils_of_war
+                :winner
 
     def initialize(player1, player2)
         # player1 variable holds player1's attributes, deck, cards
@@ -16,6 +17,7 @@ class Turn
         @player2 = player2
         # spoils_of_war array starts empty as cards get added to it turning each turn
         @spoils_of_war = []
+        @winner = nil
     end
 
     # Returns the type of turn based on users card ranks
@@ -48,9 +50,9 @@ class Turn
         # Checks the type of turn with a while statement and then compares card ranks to determine winner
         while @type == :basic
             if @player1_top_card > @player2_top_card
-                @winner = player1
+                @winner = @player1
             elsif @player1_top_card < @player2_top_card
-                @winner = player2
+                @winner = @player2
             end
             break
         end
@@ -58,9 +60,9 @@ class Turn
         # Checks the type of turn with a while statement and then compares card ranks to determine winner
         while @type == :war
             if @player1_third_card > @player2_third_card
-                @winner = player1
+                @winner = @player1
             elsif @player1_third_card < @player2_third_card
-                @winner = player2
+                @winner = @player2
             end
             break
         end
@@ -88,48 +90,51 @@ class Turn
     end
 
     # Submits all players cards to the spoils of war array and removes the cards from the players decks
+    # look into find for the basic, and look into index.select using each on type war, look into .times on mutually assured destruction.
     def pile_cards
-        @spoilers_of_war = []
         if @type == :basic
-            player1.deck.cards.map do |card|
-                @spoils_of_war << card if card == player1.deck.cards[0]
+            @player1.deck.cards.select do |card|
+                @spoils_of_war << card if card == @player1.deck.cards[0]
             end
-            player2.deck.cards.map do |card|
-                @spoils_of_war << card if card == player2.deck.cards[0]
+            @player2.deck.cards.select do |card|
+                @spoils_of_war << card if card == @player2.deck.cards[0]
             end
-            player1.deck.remove_card
-            player2.deck.remove_card
+            @player1.deck.remove_card
+            @player2.deck.remove_card
+
         elsif @type == :war
-            player1.deck.cards.map do |card|
-                @spoils_of_war << card if card == player1.deck.cards[0]
-                @spoils_of_war << card if card == player1.deck.cards[1]
-                @spoils_of_war << card if card == player1.deck.cards[2]
+            @player1.deck.cards.map do |card|
+                @spoils_of_war << card if card == @player1.deck.cards[0]
+                @spoils_of_war << card if card == @player1.deck.cards[1]
+                @spoils_of_war << card if card == @player1.deck.cards[2]
             end
-            player2.deck.cards.map do |card|
-                @spoils_of_war << card if card == player2.deck.cards[0]
-                @spoils_of_war << card if card == player2.deck.cards[1]
-                @spoils_of_war << card if card == player2.deck.cards[2]
+            @player2.deck.cards.map do |card|
+                @spoils_of_war << card if card == @player2.deck.cards[0]
+                @spoils_of_war << card if card == @player2.deck.cards[1]
+                @spoils_of_war << card if card == @player2.deck.cards[2]
             end
-            player1.deck.remove_card
-            player1.deck.remove_card
-            player1.deck.remove_card
-            player2.deck.remove_card
-            player2.deck.remove_card
-            player2.deck.remove_card
+            @player1.deck.remove_card
+            @player1.deck.remove_card
+            @player1.deck.remove_card
+            @player2.deck.remove_card
+            @player2.deck.remove_card
+            @player2.deck.remove_card
+
         elsif @type == :mutually_assured_destruction
-            player1.deck.remove_card
-            player1.deck.remove_card
-            player1.deck.remove_card
-            player2.deck.remove_card
-            player2.deck.remove_card
-            player2.deck.remove_card
+            @player1.deck.remove_card
+            @player1.deck.remove_card
+            @player1.deck.remove_card
+            @player2.deck.remove_card
+            @player2.deck.remove_card
+            @player2.deck.remove_card
         end
     end
 
-    # Moves all the cards from the spoils of war array into the winners deck
+    # Moves all the cards from the spoils of war array into the winners deck, and clears the spoils of war aray for the next round.
     def award_spoils(player)
         @spoils_of_war.each do |card|
             player.deck.add_card(card)
         end
+        @spoils_of_war.clear
     end
 end
