@@ -21,30 +21,26 @@ class Game
             turn_type = @turn.type
             winner = @turn.winner
             @turn.pile_cards
-            puts @player1.deck.cards.count
-            puts @player1.has_lost?
-            puts @player2.deck.cards.count
-            puts @player2.has_lost?
-            puts @turn.winner
             if @round == 1000001
-                puts "---- DRAW ----"
+                p "---- DRAW ----"
 
             elsif @turn.spoils_of_war.count == 0
-                puts "Turn #{@round}: *#{turn_type}* - 6 cards removed from play"
+                p "Turn #{@round}: *#{turn_type}* - 6 cards removed from play"
 
             elsif @turn.spoils_of_war.count == 2
-                puts "Turn #{@round}: :#{turn_type} - #{winner.name} won 2 cards."
+                p "Turn #{@round}: :#{turn_type} - #{winner.name} won 2 cards."
                 @turn.award_spoils(winner)
 
             elsif @turn.spoils_of_war.count == 6
-                puts "Turn #{@round}: :#{turn_type} - #{winner.name} won 6 cards."
+                p "Turn #{@round}: :#{turn_type} - #{winner.name} won 6 cards."
                 @turn.award_spoils(winner)
             end
         end
+
         if @player1.has_lost? == true
-            puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+            p "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
         elsif @player2.has_lost? == true
-            puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+            p "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
         end
     end
 end

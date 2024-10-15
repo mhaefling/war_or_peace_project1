@@ -4,7 +4,7 @@ require './lib/player'
 require './lib/turn'
 require './lib/game'
 
-# try to create all cards with an iteration method.
+# Iteration 4: Automate the creation of decks
 
 card1 = Card.new(:spade, '2', 2)
 card2 = Card.new(:spade, '3', 3)
@@ -71,10 +71,9 @@ deck2 = Deck.new(shuffled_cards[26..51])
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
 
-puts """Welcome to War! (or Peace) This game will be played with 52 cards.
-The players today are Megan and Aurora.
-Type 'GO' to start the game!
-------------------------------------------------------------------"""
+p "Welcome to War! (or Peace) This game will be played with 52 cards."
+p "Type 'GO' to start the game!"
+p "------------------------------------------------------------------"
 start_game = gets
 
 new_game = Game.new(player1, player2)
