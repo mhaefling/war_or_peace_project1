@@ -80,6 +80,7 @@ class Turn
 
     # Moves all the cards from the spoils of war array into the winners deck, and clears the spoils of war aray for the next round.
     def award_spoils(player)
+        @spoils_of_war.shuffle!
         player.deck.cards.concat(@spoils_of_war)
         @spoils_of_war.clear
     end
