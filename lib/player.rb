@@ -1,24 +1,21 @@
 require './lib/card'
 require './lib/deck'
 
-# Defining Player class to hold all player details
+# Defining Player class to hold all players attributes/values.
 
 class Player
     attr_reader :name,
                 :deck
 
     def initialize(name, deck)
+        # Each player has a name.
         @name = name
+        # Each player has a deck of cards.
         @deck = deck
-        @has_lost = nil
     end
 
-    # Returns of player has lost by checking if they have ran out of cards in their deck
+    # Returns if player has lost by checking if they have ran out of cards in their deck
     def has_lost?
-        if deck.cards.count > 0
-            return @hast_lost = false
-        else
-            return @hast_lost = true
-        end
+        deck.cards.empty?
     end
 end

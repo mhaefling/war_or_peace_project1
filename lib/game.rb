@@ -6,7 +6,7 @@ require './lib/turn'
 class Game
     attr_reader :player1,
                 :player2,
-                :turn,
+                :turn
 
     def initialize(player1, player2)
         @player1 = player1
@@ -16,23 +16,30 @@ class Game
     end
 
     def start
-        while player1.has_lost? == false || player2.has_lost? == false
-            turn.type
-            winner = turn.winner
-            turn.pile_cards 
-            # require 'pry'; binding.pry
-            if turn.type == :mutually_assured_destruction
-                @round += 1
-                puts "Turn #{@round}: *#{turn.type}* - 6 cards removed from play"
-            elsif turn.type == :war
-                @round += 1
-                puts "Turn #{@round}: :#{turn.type} - #{turn.winner.name} won #{turn.spoils_of_war.count} cards."
-                turn.award_spoils(winner)
-            elsif turn.type == :basic
-                @round += 1
-                puts "Turn #{@round}: :#{turn.type} - #{turn.winner.name} won #{turn.spoils_of_war.count} cards."
-                turn.award_spoils(winner)
-            end    
+        # if @player1.has_lost? == true
+        #     print "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+        # elsif @player2.has_lost? == true
+        #     print "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+        # end
+        until @player1.has_lost == true || @player2.has_lost == true || @round == 1000001 do
+            @round +=1
+            turn_type = @turn.type
+            winner = @turn.winner
+            @turn.pile_cards
+            if @round == 1000001
+                puts "---- DRAW ----"
+
+            elsif @turn.spoils_of_war.count == 0
+                puts "Turn #{@round}: *#{turn_type}* - 6 cards removed from play"
+
+            elsif @turn.spoils_of_war.count == 2
+                puts "Turn #{@round}: :#{turn_type} - #{@turn.winner.name} won 2 cards."
+                @turn.award_spoils(winner)
+
+            elsif @turn.spoils_of_war.count == 6
+                puts "Turn #{@round}: :#{turn_type} - #{@turn.winner.name} won 6 cards."
+                @turn.award_spoils(winner)
+            end
         end
     end
 end

@@ -1,6 +1,6 @@
 require './lib/card'
 
-# Defining Deck class to hold each players card
+# Defining Deck class to hold each players deck of cards
 
 class Deck
     attr_reader :cards
@@ -12,12 +12,12 @@ class Deck
 
     # Return the rank of the card at the given index value
     def rank_of_card_at(index)
-        @index = cards[index].rank
+        @cards[index].rank
     end
 
     # Return an array of all the cards with a rank that is greater than or equal to 11
     def high_ranking_cards
-        cards.select do |card|
+        @cards.select do |card|
             card.rank >=11
         end
     end

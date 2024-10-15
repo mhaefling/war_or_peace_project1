@@ -14,7 +14,7 @@ describe Player do
             expect(player).to be_an_instance_of(Player)
         end
 
-        it 'have a name' do
+        it 'has a name' do
             card1 = Card.new(:diamond, 'Queen', 12)
             card2 = Card.new(:spade, '3', 3)
             card3 = Card.new(:heart, 'Ace', 14)

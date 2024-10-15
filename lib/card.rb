@@ -1,4 +1,4 @@
-# Defining Card class to create each card
+# Defining Card class to hold the attributes/values of each card.
 
 class Card
     attr_reader :suit,
