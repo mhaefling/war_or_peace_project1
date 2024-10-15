@@ -21,6 +21,11 @@ class Game
             turn_type = @turn.type
             winner = @turn.winner
             @turn.pile_cards
+            puts @player1.deck.cards.count
+            puts @player1.has_lost?
+            puts @player2.deck.cards.count
+            puts @player2.has_lost?
+            puts @turn.winner
             if @round == 1000001
                 puts "---- DRAW ----"
 

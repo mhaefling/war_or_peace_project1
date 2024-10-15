@@ -26,7 +26,7 @@ class Turn
             @type = :mutually_assured_destruction
 
         # Compares both players cards at index 0 to determine if they're both the same rank if true turn type is war
-        elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
+        elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) != @player2.deck.rank_of_card_at(2)
             @type = :war
         
         # Compares both players cards at index 0 to determine if they're NOT the same rank if true turn type is basic
@@ -81,7 +81,11 @@ class Turn
     # Moves all the cards from the spoils of war array into the winners deck, and clears the spoils of war aray for the next round.
     def award_spoils(player)
         @spoils_of_war.shuffle!
-        player.deck.cards.concat(@spoils_of_war)
-        @spoils_of_war.clear
+        if player == "No Winner"
+            @spoils_of_war.clear
+        else
+            player.deck.cards.concat(@spoils_of_war)
+            @spoils_of_war.clear
+        end
     end
 end
